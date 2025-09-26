@@ -46,6 +46,12 @@ const Navbar = () => {
           transition={{ duration: 1 }}
           className="flex space-x-2"
         >
+          <img
+            src={doodle_image}
+            alt="img"
+            className="size-6 w-8 animate-bounce rounded-[10%]"
+          />
+
           <div className="border p-1 text-[60%] bg-blue-900 px-2 rounded-md hover:cursor-grab">
             Get Started
           </div>

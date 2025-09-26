@@ -2,7 +2,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="min-h-screen flex bg-base-300">
+    <div className="min-h-screen flex bg-[#050219]">
       <Home/>
     </div>
   );

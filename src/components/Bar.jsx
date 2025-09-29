@@ -26,20 +26,6 @@ const Bar = () => {
           accessible for everyone with modern features.
         </div>
       </div>
-      {/* <div className="flex justify-center items-center w-full">
-        <motion.div
-          initial={{ x: "100%" }}
-          animate={{ x: "-100%" }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatDelay: 1,
-            repeatType: "mirror",
-            ease: "easeInOut",
-          }}
-          className="w-[30%] border border-primary"
-        ></motion.div>
-      </div> */}
     </div>
   );
 };

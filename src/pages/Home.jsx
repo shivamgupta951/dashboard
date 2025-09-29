@@ -8,10 +8,11 @@ import { AiFillApi } from "react-icons/ai";
 import { motion } from "framer-motion";
 import Yemmy_Meet_logo from "../assets/Yemmy_Meet_logo.png";
 import { MdGroup } from "react-icons/md";
+import Collab from "../components/Collab";
 
 const Home = () => {
   return (
-    <div className="w-full">
+    <div className="w-full h-[900px] md:h-[800px]">
       <Navbar />
       <Bar />
       {/* Small sceeens! */}
@@ -85,7 +86,7 @@ const Home = () => {
         </div>
       </div>
       {/* Midium and large screens! */}
-      <div className="hidden md:flex justify-around items-center h-[80%]">
+      <div className="hidden md:flex justify-around items-center h-[60%]">
         <div className="w-[50%] space-y-4 p-4">
           <h1 className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4">
             <motion.div
@@ -116,7 +117,7 @@ const Home = () => {
                   className="w-[70%] rounded-sm p-2"
                   placeholder="Enter Room id"
                 />
-                <div className="btn btn-accent m-1 text-black">
+                <div className="btn btn-accent m-1 text-black hover:rotate-3">
                   Join Room <MdGroup size={17} />{" "}
                 </div>
               </div>
@@ -127,10 +128,10 @@ const Home = () => {
           initial={{ y: 70, x: 80, opacity: 0 }}
           animate={{ y: 0, x: 0, opacity: 1 }}
           transition={{ duration: 2 }}
-          className="md:w-[35%] md:h-[60%] bg-black relative rounded-2xl lg:w-[30%] lg:h-[70%] animate-pulse border-2 border-red-500"
+          className="md:w-[35%] md:h-[65%] bg-black relative rounded-2xl lg:w-[30%] lg:h-[80%] animate-pulse border-2 border-red-500"
         >
           <AiFillApi className="absolute right-2 top-2 size-5 animate-spin-slow" />
-          <div className="flex justify-center space-x-2 items-center pb-4 mt-12 border-b-2">
+          <div className="flex justify-center space-x-2 items-center pb-4 border-b-2 mt-[13%] xl:mt-[10%]">
             <img
               src={pic1}
               className="w-[45%] shadow-md shadow-purple-900"

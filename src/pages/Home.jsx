@@ -88,7 +88,7 @@ const Home = () => {
       {/* Midium and large screens! */}
       <div className="hidden md:flex justify-around items-center h-[60%]">
         <div className="w-[50%] space-y-4 p-4">
-          <h1 className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4">
+          <motion.h1 initial={{x:-100 , opacity:0}} animate={{x:0 , opacity:1}} transition={{duration:3}} className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4">
             <motion.div
               animate={{ rotate: [0, 6, -6, 0] }}
               transition={{
@@ -108,7 +108,7 @@ const Home = () => {
               Connect with friends , family and Companions with Yemmy Room-id
               and have a secure meet with them!
             </div>
-          </h1>
+          </motion.h1>
           <div className="flex justify-center items-center">
             <form action="" className="md:w-[90%]">
               <div className="w-full flex justify-center items-center">
@@ -125,7 +125,7 @@ const Home = () => {
           </div>
         </div>
         <motion.div
-          initial={{ y: 70, x: 80, opacity: 0 }}
+          initial={{ y: 10, x: 10, opacity: 0 }}
           animate={{ y: 0, x: 0, opacity: 1 }}
           transition={{ duration: 2 }}
           className="md:w-[35%] md:h-[65%] bg-black relative rounded-2xl lg:w-[30%] lg:h-[80%] animate-pulse border-2 border-red-500"

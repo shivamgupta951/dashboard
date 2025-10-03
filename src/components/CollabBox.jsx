@@ -20,36 +20,36 @@ const CollabBox = () => {
         duration: 15,
         ease: "easeInOut",
       }}
-      className="relative flex justify-between flex-wrap h-80 w-[26%] rounded-lg bg-gradient-to-br from-purple-950 via-slate-900 to-black p-6 border hover:ring-2"
+      className="relative flex w-[70%] sm:w-[50%] justify-between flex-wrap h-80 md:w-[36%] lg:w-[26%] rounded-lg bg-gradient-to-br from-purple-950 via-slate-900 to-black p-6 border hover:ring-2"
     >
       <div className="absolute -top-9 left-0 text-4xl">
         <FaEarlybirds />
       </div>
-      <div className="size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow px-4 hover:-rotate-2 cursor-pointer">
+      <div className="size-[30%] px-2 sm:size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow sm:px-4 hover:-rotate-2 cursor-pointer">
         <img src={logo1} alt="logo" />
       </div>
-      <div className="size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow px-4 hover:-rotate-2 cursor-pointer">
+      <div className="size-[30%] px-2 sm:size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow sm:px-4 hover:-rotate-2 cursor-pointer">
         <img src={logo2} alt="logo" />
       </div>
-      <div className="size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow px-4 hover:-rotate-2 cursor-pointer">
+      <div className="size-[30%] px-2 sm:size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow sm:px-4 hover:-rotate-2 cursor-pointer">
         <img src={logo3} alt="logo" />
       </div>
-      <div className="size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow px-4 hover:-rotate-2 cursor-pointer">
+      <div className="size-[30%] px-2 sm:size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow sm:px-4 hover:-rotate-2 cursor-pointer">
         <img src={logo4} alt="logo" />
       </div>
-      <div className="size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow px-4 hover:-rotate-2 cursor-pointer">
+      <div className="size-[30%] px-2 sm:size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow sm:px-4 hover:-rotate-2 cursor-pointer">
         <img src={logo5} alt="logo" />
       </div>
-      <div className="size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow px-4 hover:-rotate-2 cursor-pointer">
+      <div className="size-[30%] px-2 sm:size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow sm:px-4 hover:-rotate-2 cursor-pointer">
         <img src={logo6} alt="logo" />
       </div>
-      <div className="size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow px-4 hover:-rotate-2 cursor-pointer">
+      <div className="size-[30%] px-2 sm:size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow sm:px-4 hover:-rotate-2 cursor-pointer">
         <img src={logo7} alt="logo" />
       </div>
-      <div className="size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow px-4 hover:-rotate-2 cursor-pointer">
+      <div className="size-[30%] px-2 sm:size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow sm:px-4 hover:-rotate-2 cursor-pointer">
         <img src={logo8} alt="logo" />
       </div>
-      <div className="size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow px-4 hover:-rotate-2 cursor-pointer">
+      <div className="size-[30%] px-2 sm:size-[30%] border flex justify-center items-center rounded-2xl my-1 animate-pulse-slow sm:px-4 hover:-rotate-2 cursor-pointer">
         <img src={logo9} alt="logo" />
       </div>
     </motion.div>

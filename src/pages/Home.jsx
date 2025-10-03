@@ -12,7 +12,7 @@ import Collab from "../components/Collab";
 
 const Home = () => {
   return (
-    <div className="w-full h-[900px] md:h-[800px]">
+    <div className="w-full h-[900px] sm:h-[1000px] md:h-[800px]">
       <Navbar />
       <Bar />
       {/* Small sceeens! */}

@@ -86,32 +86,52 @@ const Navbar = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 2 }}
             className="border-t border-warning transition-all transform duration-300 ease-in-out hover:scale-90 cursor-pointer hover:border-base-content hover:border-b"
+            onClick={() =>
+              document
+                .getElementById("home")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
-            Features
+            Home
           </motion.div>
           <motion.div
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 2 }}
             className="border-t border-warning transition-all transform duration-300 ease-in-out hover:scale-90 cursor-pointer hover:border-base-content hover:border-b"
+            onClick={() =>
+              document
+                .getElementById("collab")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
-            Solutions
+            Collabs
           </motion.div>
           <motion.div
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 2 }}
             className="border-t border-warning transition-all transform duration-300 ease-in-out hover:scale-90 cursor-pointer hover:border-base-content hover:border-b"
+            onClick={() =>
+              document
+                .getElementById("review")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
-            Resources
+            Reviews
           </motion.div>
           <motion.div
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 2 }}
             className="border-t border-warning transition-all transform duration-300 ease-in-out hover:scale-90 cursor-pointer hover:border-base-content hover:border-b"
+            onClick={() =>
+              document
+                .getElementById("footer")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
-            Pricing
+            Info
           </motion.div>
         </div>
 
@@ -158,31 +178,46 @@ const Navbar = () => {
               transition={{ duration: 2 }}
               className="text-[70%] border-t border-warning transition-all transform duration-300 ease-in-out hover:scale-90 cursor-pointer hover:border-base-content hover:border-b"
             >
-              Features
+              Home
             </motion.div>
             <motion.div
               initial={{ y: -30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 2 }}
               className="text-[70%] border-t border-warning transition-all transform duration-300 ease-in-out hover:scale-90 cursor-pointer hover:border-base-content hover:border-b"
+              onClick={() =>
+                document
+                  .getElementById("collab")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
-              Solutions
+              Collabs
             </motion.div>
             <motion.div
               initial={{ y: -30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 2 }}
               className="text-[70%] border-t border-warning transition-all transform duration-300 ease-in-out hover:scale-90 cursor-pointer hover:border-base-content hover:border-b"
+              onClick={() =>
+                document
+                  .getElementById("review")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
-              Resources
+              Reviews
             </motion.div>
             <motion.div
               initial={{ y: -30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 2 }}
               className="text-[70%] border-t border-warning transition-all transform duration-300 ease-in-out hover:scale-90 cursor-pointer hover:border-base-content hover:border-b"
+              onClick={() =>
+                document
+                  .getElementById("footer")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
-              Pricing
+              Info
             </motion.div>
           </div>
         </div>

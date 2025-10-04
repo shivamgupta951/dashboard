@@ -38,7 +38,7 @@ export default function TestimonialsSection() {
         {testimonials.map((t, index) => (
           <div
             key={index}
-            className="bg-gradient-to-bl from-red-900 to-green-950 shadow-lg rounded-2xl p-6 flex flex-col justify-between border border-gray-100 hover:shadow-xl transition duration-300"
+            className="bg-gradient-to-bl from-red-900 to-green-950 shadow-lg rounded-2xl p-6 flex flex-col justify-between border border-gray-700 hover:shadow-sm transform transition duration-300 hover:shadow-orange-800 hover:ring-4"
           >
             {/* Stars */}
             <div className="flex space-x-1 mb-4">

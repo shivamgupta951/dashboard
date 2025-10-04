@@ -1,5 +1,5 @@
 import React from "react";
-import { Toaster } from "react-hot-toast"; 
+import { Toaster } from "react-hot-toast";
 
 import Collab from "./components/Collab";
 import Footer from "./components/Footer";
@@ -14,7 +14,7 @@ function App() {
         toastOptions={{
           duration: 3000,
           style: {
-            background: "#111827",
+            background: "#042206",
             color: "#fff",
             borderRadius: "10px",
             padding: "10px 16px",
@@ -23,7 +23,6 @@ function App() {
           },
         }}
       />
-
       <Home />
       <Collab />
       <Review />

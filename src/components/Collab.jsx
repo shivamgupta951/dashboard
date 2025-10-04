@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Collab = () => {
   return (
-    <>
+    <div id="collab">
       <div className="hidden md:flex min-h-[700px] bg-gradient-to-br from-[#4d2707db] via-black to-[#050219] justify-around items-center">
         <motion.div
           initial={{ x: -150, opacity: 0 }}
@@ -47,7 +47,7 @@ const Collab = () => {
         </motion.div>
         <CollabBox />
       </div>
-    </>
+    </div>
   );
 };
 

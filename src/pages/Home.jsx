@@ -13,7 +13,7 @@ import ElectricBorder from "../components/ElectricBorder";
 
 const Home = () => {
   return (
-    <div className="w-full h-[900px] sm:h-[1000px] md:h-[800px]">
+    <div id="home" className="w-full h-[900px] sm:h-[1000px] md:h-[800px]">
       <Navbar />
       <Bar />
       {/* Small sceeens! */}
@@ -90,7 +90,7 @@ const Home = () => {
       <div className="hidden md:flex justify-around items-center h-[60%]">
         <div className="w-[50%] space-y-4 p-4">
           <motion.h1
-            initial={{ x: -100, opacity: 0 }}
+            initial={{ x: -40, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 3 }}
             className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4 rounded-lg bg-gradient-to-br from-teal-900"

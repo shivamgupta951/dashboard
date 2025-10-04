@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import Yemmy_Meet_logo from "../assets/Yemmy_Meet_logo.png";
 import { MdGroup } from "react-icons/md";
 import Collab from "../components/Collab";
+import ElectricBorder from "../components/ElectricBorder";
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
       {/* Small sceeens! */}
       <div className="flex gap-4 flex-col justify-center items-center md:hidden">
         <div className="flex justify-center items-center py-8">
-          <div className="w-[80%] h-[60%] bg-black relative rounded-2xl animate-pulse border-2 border-red-500">
+          <ElectricBorder className="w-[80%] h-[60%] bg-black relative rounded-2xl animate-pulse">
             <AiFillApi className="absolute right-2 top-2 size-5 animate-spin-slow" />
             <div className="flex justify-center space-x-2 items-center pb-4 mt-6 border-b-2">
               <img
@@ -43,11 +44,11 @@ const Home = () => {
               />
               <img src={pic3} className="w-[30%] rounded-md" alt="picture" />
             </div>
-          </div>
+          </ElectricBorder>
         </div>
         <div className="flex justify-around items-center h-[80%]">
-          <div className="w-[100%] space-y-4 p-4">
-            <h1 className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4">
+          <div className="w-[100%] space-y-4 p-4 ">
+            <h1 className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4 rounded-lg bg-gradient-to-br from-teal-900">
               <motion.div
                 animate={{ rotate: [0, 6, -6, 0] }}
                 transition={{
@@ -63,7 +64,7 @@ const Home = () => {
                   alt="image"
                 />{" "}
               </motion.div>
-              <div className="text-[30%] w-[60%] tracking-tight text-center">
+              <div className="text-[20%] sm:text-[30%] w-[60%] tracking-tight text-center">
                 Connect with friends , family and Companions with Yemmy Room-id
                 and have a secure meet with them!
               </div>
@@ -88,7 +89,12 @@ const Home = () => {
       {/* Midium and large screens! */}
       <div className="hidden md:flex justify-around items-center h-[60%]">
         <div className="w-[50%] space-y-4 p-4">
-          <motion.h1 initial={{x:-100 , opacity:0}} animate={{x:0 , opacity:1}} transition={{duration:3}} className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4">
+          <motion.h1
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 3 }}
+            className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4 rounded-lg bg-gradient-to-br from-teal-900"
+          >
             <motion.div
               animate={{ rotate: [0, 6, -6, 0] }}
               transition={{
@@ -124,36 +130,37 @@ const Home = () => {
             </form>
           </div>
         </div>
-        <motion.div
-          initial={{ y: 10, x: 10, opacity: 0 }}
-          animate={{ y: 0, x: 0, opacity: 1 }}
-          transition={{ duration: 2 }}
-          className="md:w-[35%] md:h-[65%] bg-black relative rounded-2xl lg:w-[30%] lg:h-[80%] animate-pulse border-2 border-red-500"
-        >
-          <AiFillApi className="absolute right-2 top-2 size-5 animate-spin-slow" />
-          <div className="flex justify-center space-x-2 items-center pb-4 border-b-2 mt-[13%] xl:mt-[10%]">
-            <img
-              src={pic1}
-              className="w-[45%] shadow-md shadow-purple-900"
-              alt="picture"
-            />
-            <div className="md:text-[35%] lg:text-[45%] h-[80%] w-[32%] text-center">
-              Yemmy Meet is a seamless video calling platform built under the
-              Yemmy Foundation, designed to connect people through reliable
-              meetings. It offers smooth communication, secure connections, and
-              modern features that make collaboration easy, whether for personal
-              talks, business discussions, or group sessions and productivity!
+          <ElectricBorder
+            initial={{ y: 10, x: 10, opacity: 0 }}
+            animate={{ y: 0, x: 0, opacity: 1 }}
+            transition={{ duration: 2 }}
+            className="md:w-[35%] md:h-[65%] p-2 bg-black relative rounded-2xl lg:w-[30%] lg:h-[80%] animate-pulse"
+          >
+            <AiFillApi className="absolute right-2 top-2 size-5 animate-spin-slow" />
+            <div className="flex justify-center space-x-2 items-center pb-4 border-b-2 mt-[13%] xl:mt-[10%]">
+              <img
+                src={pic1}
+                className="w-[45%] shadow-md shadow-purple-900"
+                alt="picture"
+              />
+              <div className="md:text-[35%] lg:text-[45%] h-[80%] w-[32%] text-center">
+                Yemmy Meet is a seamless video calling platform built under the
+                Yemmy Foundation, designed to connect people through reliable
+                meetings. It offers smooth communication, secure connections,
+                and modern features that make collaboration easy, whether for
+                personal talks, business discussions, or group sessions and
+                productivity!
+              </div>
             </div>
-          </div>
-          <div className="md:h-[40%] flex justify-center space-x-4 lg:h-[40%] items-center my-2 border-t-2 border-green-600">
-            <img
-              src={pic2}
-              className="w-[50%] h-[80%] rounded-xl"
-              alt="picture"
-            />
-            <img src={pic3} className="h-[80%] rounded-md" alt="picture" />
-          </div>
-        </motion.div>
+            <div className="md:h-[130px] flex justify-center space-x-4 lg:h-[150px] items-center my-2 border-t-2 border-green-600">
+              <img
+                src={pic2}
+                className="w-[50%] h-[80%] rounded-xl"
+                alt="picture"
+              />
+              <img src={pic3} className="h-[80%] rounded-md" alt="picture" />
+            </div>
+          </ElectricBorder>
       </div>
     </div>
   );

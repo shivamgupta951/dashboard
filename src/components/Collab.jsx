@@ -26,7 +26,7 @@ const Collab = () => {
         </motion.div>
         <CollabBox />
       </div>
-      <div className="min-h-[1000px] bg-gradient-to-br from-[#4d2707db] via-black to-[#050219] justify-around items-center text-center flex flex-col md:hidden">
+      <div className="min-h-[1050px] bg-gradient-to-br from-[#4d2707db] via-black to-[#050219] justify-around items-center text-center flex flex-col md:hidden">
         <motion.div
           initial={{ x: -150, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}

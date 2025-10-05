@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Bar from "../components/Bar";
 import pic1 from "../assets/pic1.png";
@@ -12,6 +13,13 @@ import Collab from "../components/Collab";
 import ElectricBorder from "../components/ElectricBorder";
 
 const Home = () => {
+  const [input, setInput] = useState("");
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (input) {
+      window.location.href = `/room/${input}`;
+    }
+  };
   return (
     <div id="home" className="w-full h-[900px] sm:h-[1000px] md:h-[800px]">
       <Navbar />
@@ -74,10 +82,15 @@ const Home = () => {
                 <div className="w-full flex justify-center items-center">
                   <input
                     type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
                     className="w-[60%] rounded-sm p-2"
-                    placeholder="Enter Room id"
+                    placeholder="Enter Your Room id"
                   />
-                  <div className="btn btn-accent m-1 text-black">
+                  <div
+                    className="btn btn-accent m-1 text-black"
+                    onClick={submitHandler}
+                  >
                     Join Room <MdGroup size={17} />{" "}
                   </div>
                 </div>
@@ -120,47 +133,48 @@ const Home = () => {
               <div className="w-full flex justify-center items-center">
                 <input
                   type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
                   className="w-[70%] rounded-sm p-2"
                   placeholder="Enter Room id"
                 />
-                <div className="btn btn-accent m-1 text-black hover:rotate-3">
+                <div className="btn btn-accent m-1 text-black hover:rotate-3" onClick={submitHandler}>
                   Join Room <MdGroup size={17} />{" "}
                 </div>
               </div>
             </form>
           </div>
         </div>
-          <ElectricBorder
-            initial={{ y: 10, x: 10, opacity: 0 }}
-            animate={{ y: 0, x: 0, opacity: 1 }}
-            transition={{ duration: 2 }}
-            className="md:w-[35%] md:h-[65%] p-2 bg-black relative rounded-2xl lg:w-[30%] lg:h-[80%] animate-pulse"
-          >
-            <AiFillApi className="absolute right-2 top-2 size-5 animate-spin-slow" />
-            <div className="flex justify-center space-x-2 items-center pb-4 border-b-2 mt-[13%] xl:mt-[10%]">
-              <img
-                src={pic1}
-                className="w-[45%] shadow-md shadow-purple-900"
-                alt="picture"
-              />
-              <div className="md:text-[35%] lg:text-[45%] h-[80%] w-[32%] text-center">
-                Yemmy Meet is a seamless video calling platform built under the
-                Yemmy Foundation, designed to connect people through reliable
-                meetings. It offers smooth communication, secure connections,
-                and modern features that make collaboration easy, whether for
-                personal talks, business discussions, or group sessions and
-                productivity!
-              </div>
+        <ElectricBorder
+          initial={{ y: 10, x: 10, opacity: 0 }}
+          animate={{ y: 0, x: 0, opacity: 1 }}
+          transition={{ duration: 2 }}
+          className="md:w-[35%] md:h-[65%] p-2 bg-black relative rounded-2xl lg:w-[30%] lg:h-[80%] animate-pulse"
+        >
+          <AiFillApi className="absolute right-2 top-2 size-5 animate-spin-slow" />
+          <div className="flex justify-center space-x-2 items-center pb-4 border-b-2 mt-[13%] xl:mt-[10%]">
+            <img
+              src={pic1}
+              className="w-[45%] shadow-md shadow-purple-900"
+              alt="picture"
+            />
+            <div className="md:text-[35%] lg:text-[45%] h-[80%] w-[32%] text-center">
+              Yemmy Meet is a seamless video calling platform built under the
+              Yemmy Foundation, designed to connect people through reliable
+              meetings. It offers smooth communication, secure connections, and
+              modern features that make collaboration easy, whether for personal
+              talks, business discussions, or group sessions and productivity!
             </div>
-            <div className="md:h-[130px] flex justify-center space-x-4 lg:h-[150px] items-center my-2 border-t-2 border-green-600">
-              <img
-                src={pic2}
-                className="w-[50%] h-[80%] rounded-xl"
-                alt="picture"
-              />
-              <img src={pic3} className="h-[80%] rounded-md" alt="picture" />
-            </div>
-          </ElectricBorder>
+          </div>
+          <div className="md:h-[130px] flex justify-center space-x-4 lg:h-[150px] items-center my-2 border-t-2 border-green-600">
+            <img
+              src={pic2}
+              className="w-[50%] h-[80%] rounded-xl"
+              alt="picture"
+            />
+            <img src={pic3} className="h-[80%] rounded-md" alt="picture" />
+          </div>
+        </ElectricBorder>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const Home = () => {
   };
   const [createRoom, setCreateRoom] = useState(true);
   return (
-    <div id="home" className="w-full h-[900px] sm:h-[1000px] md:h-[800px]">
+    <div id="home" className="w-full h-[1100px] sm:h-[1100px] md:h-[800px]">
       <Navbar />
       <Bar />
       {/* Small sceeens! */}
@@ -86,11 +86,11 @@ const Home = () => {
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="w-[60%] rounded-sm p-2"
-                    placeholder="Enter Your Room id"
+                    className="w-[70%] rounded-sm p-2"
+                    placeholder="Enter Room-id/URL"
                   />
                   <div
-                    className="btn btn-accent m-1 text-black"
+                    className="btn btn-accent m-1 text-black text-[70%]"
                     onClick={submitHandler}
                   >
                     Join Room <MdGroup size={17} />{" "}
@@ -101,18 +101,41 @@ const Home = () => {
             <div className="flex justify-center items-center">
               <form action="" className="w-[100%]">
                 <div className="w-full flex justify-center items-center">
-                  <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    className="w-[60%] rounded-sm p-2"
-                    placeholder="Enter Your Room id"
-                  />
+                  <div className="w-[100%] h-16 rounded-lg bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300">
+                    {" "}
+                    {createRoom ? (
+                      <div className="flex w-[100%] items-center justify-between h-[100%] space-x-4">
+                        <div className="h-[90%] w-[67%] flex items-center space-x-3">
+                          <div className="text-[30%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
+                            link: Lorem ipsum, dolor sit amet consecteturjcsiuhc
+                            hknashas elit. Voluptas, optio!
+                          </div>{" "}
+                          <div className="cursor-pointer text-white underline text-[50%] border-gray-600">
+                            Copy Link!
+                          </div>
+                        </div>{" "}
+                        <div className="h-[90%] w-[35%] flex space-x-2 px-1 items-center">
+                          <div className="text-[40%] h-[60%] border w-[55%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
+                            ID: 143632
+                          </div>{" "}
+                          <div className="cursor-pointer text-white underline text-[60%] border-gray-600">
+                            Copy ID!
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-full flex justify-center items-center">
+                        Click the button to generate link!
+                      </div>
+                    )}{" "}
+                  </div>
+                </div>
+                <div className="w-full flex justify-center items-center">
                   <div
-                    className="btn btn-error m-1 text-black"
+                    className="text-[60%] btn btn-error m-1 w-[80%] my-5 text-black hover:rotate-3"
                     onClick={submitHandler}
                   >
-                    Create Room <MdGroup size={17} />{" "}
+                    Create New Room <MdGroup size={17} />
                   </div>
                 </div>
               </form>
@@ -183,21 +206,26 @@ const Home = () => {
                     <div className="flex w-[100%] items-center justify-between h-[100%] space-x-4">
                       <div className="h-[90%] w-[67%] flex items-center space-x-3">
                         <div className="md:text-[30%] lg:text-[45%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
-                          link: Lorem ipsum, dolor sit amet consecteturjcsiuhc hknashas elit. Voluptas, optio!
+                          link: Lorem ipsum, dolor sit amet consecteturjcsiuhc
+                          hknashas elit. Voluptas, optio!
                         </div>{" "}
                         <div className="cursor-pointer text-white underline md:text-[50%] lg:text-[60%] border-gray-600">
                           Copy Link!
                         </div>
                       </div>{" "}
                       <div className="h-[90%] w-[35%] flex space-x-2 px-1 items-center">
-                        <div className="text-[40%] h-[60%] border w-[55%] flex justify-center items-center rounded-md bg-[#4f0e0e]">ID: 143632</div>{" "}
+                        <div className="text-[40%] h-[60%] border w-[55%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
+                          ID: 143632
+                        </div>{" "}
                         <div className="cursor-pointer text-white underline text-[60%] border-gray-600">
                           Copy ID!
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <div className="w-full flex justify-center items-center">Click the button to generate link!</div>
+                    <div className="w-full flex justify-center items-center">
+                      Click the button to generate link!
+                    </div>
                   )}{" "}
                 </div>
               </div>

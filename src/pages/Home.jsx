@@ -11,6 +11,7 @@ import Yemmy_Meet_logo from "../assets/Yemmy_Meet_logo.png";
 import { MdGroup } from "react-icons/md";
 import Collab from "../components/Collab";
 import ElectricBorder from "../components/ElectricBorder";
+import { div } from "framer-motion/client";
 
 const Home = () => {
   const [input, setInput] = useState("");
@@ -20,6 +21,7 @@ const Home = () => {
       window.location.href = `/room/${input}`;
     }
   };
+  const [createRoom, setCreateRoom] = useState(true);
   return (
     <div id="home" className="w-full h-[900px] sm:h-[1000px] md:h-[800px]">
       <Navbar />
@@ -96,12 +98,31 @@ const Home = () => {
                 </div>
               </form>
             </div>
+            <div className="flex justify-center items-center">
+              <form action="" className="w-[100%]">
+                <div className="w-full flex justify-center items-center">
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    className="w-[60%] rounded-sm p-2"
+                    placeholder="Enter Your Room id"
+                  />
+                  <div
+                    className="btn btn-error m-1 text-black"
+                    onClick={submitHandler}
+                  >
+                    Create Room <MdGroup size={17} />{" "}
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
       {/* Midium and large screens! */}
       <div className="hidden md:flex justify-around items-center h-[60%]">
-        <div className="w-[50%] space-y-4 p-4">
+        <div className="md:w-[60%] lg:w-[55%] space-y-4 p-4">
           <motion.h1
             initial={{ x: -40, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -135,11 +156,49 @@ const Home = () => {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  className="w-[70%] rounded-sm p-2"
-                  placeholder="Enter Room id"
+                  className="w-[72%] rounded-md p-2"
+                  placeholder="Enter Room-id/URL"
                 />
-                <div className="btn btn-accent m-1 text-black hover:rotate-3" onClick={submitHandler}>
+                <div
+                  className="md:text-[70%] btn btn-accent m-1 text-black hover:rotate-3"
+                  onClick={submitHandler}
+                >
                   Join Room <MdGroup size={17} />{" "}
+                </div>
+              </div>
+            </form>
+          </div>
+          <div className="flex justify-center items-center">
+            <form action="" className="md:w-[100%] lg:w-[100%]">
+              <div className="w-full flex justify-center items-center">
+                <div
+                  className="md:text-[40%] btn btn-error m-1 lg:text-[60%] text-black hover:rotate-3"
+                  onClick={submitHandler}
+                >
+                  Create New Room <MdGroup size={17} />
+                </div>
+                <div className="w-[95%] h-16 rounded-lg bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300">
+                  {" "}
+                  {createRoom ? (
+                    <div className="flex w-[100%] items-center justify-between h-[100%] space-x-4">
+                      <div className="h-[90%] w-[67%] flex items-center space-x-3">
+                        <div className="md:text-[30%] lg:text-[45%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
+                          link: Lorem ipsum, dolor sit amet consecteturjcsiuhc hknashas elit. Voluptas, optio!
+                        </div>{" "}
+                        <div className="cursor-pointer text-white underline md:text-[50%] lg:text-[60%] border-gray-600">
+                          Copy Link!
+                        </div>
+                      </div>{" "}
+                      <div className="h-[90%] w-[35%] flex space-x-2 px-1 items-center">
+                        <div className="text-[40%] h-[60%] border w-[55%] flex justify-center items-center rounded-md bg-[#4f0e0e]">ID: 143632</div>{" "}
+                        <div className="cursor-pointer text-white underline text-[60%] border-gray-600">
+                          Copy ID!
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="w-full flex justify-center items-center">Click the button to generate link!</div>
+                  )}{" "}
                 </div>
               </div>
             </form>

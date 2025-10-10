@@ -23,13 +23,14 @@ const Home = () => {
   };
   const [createRoom, setCreateRoom] = useState(true);
   return (
-    <div id="home" className="w-full h-[1100px] sm:h-[1100px] md:h-[800px]">
+    <div id="home" className="w-full h-[1200px] sm:h-[1200px] md:h-[800px]">
       <Navbar />
       <Bar />
       {/* Small sceeens! */}
-      <div className="flex gap-4 flex-col justify-center items-center md:hidden">
+      <div className="flex flex-col justify-center items-center md:hidden gap-6 px-2">
+        {/* Info Section */}
         <div className="flex justify-center items-center py-8">
-          <ElectricBorder className="w-[80%] h-[60%] bg-black relative rounded-2xl animate-pulse">
+          <ElectricBorder className="w-[90%] bg-black relative rounded-2xl animate-pulse">
             <AiFillApi className="absolute right-2 top-2 size-5 animate-spin-slow" />
             <div className="flex justify-center space-x-2 items-center pb-4 mt-6 border-b-2">
               <img
@@ -56,96 +57,112 @@ const Home = () => {
             </div>
           </ElectricBorder>
         </div>
-        <div className="flex justify-around items-center h-[80%]">
-          <div className="w-[100%] space-y-4 p-4 ">
-            <h1 className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4 rounded-lg bg-gradient-to-br from-teal-900">
-              <motion.div
-                animate={{ rotate: [0, 6, -6, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 15,
-                  ease: "easeInOut",
-                }}
-                className="w-[30%]"
+
+        {/* Room Join & Create Section */}
+        <div className="w-[95%] flex flex-col items-center space-y-6">
+          {/* Heading */}
+          <h1 className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4 rounded-lg bg-gradient-to-br from-teal-900">
+            <motion.div
+              animate={{ rotate: [0, 6, -6, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 15,
+                ease: "easeInOut",
+              }}
+              className="w-[30%]"
+            >
+              <img
+                src={Yemmy_Meet_logo}
+                className="border-4 border-red-600 rounded-2xl mx-2 w-[70%]"
+                alt="image"
+              />
+            </motion.div>
+            <div className="text-[20%] sm:text-[30%] w-[60%] tracking-tight text-center">
+              Connect with friends, family, and Companions with Yemmy Room-ID
+              and have a secure meet with them!
+            </div>
+          </h1>
+
+          {/* Join Room Input */}
+          <form onSubmit={submitHandler} className="w-full flex justify-center">
+            <div className="flex w-full justify-center items-center">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className="w-[70%] rounded-sm p-2"
+                placeholder="Enter Room-id/URL"
+              />
+              <button
+                type="submit"
+                className="btn btn-accent m-1 text-black text-[70%] flex items-center gap-1"
               >
-                <img
-                  src={Yemmy_Meet_logo}
-                  className="border-4 border-red-600 rounded-2xl mx-2 w-[70%]"
-                  alt="image"
-                />{" "}
-              </motion.div>
-              <div className="text-[20%] sm:text-[30%] w-[60%] tracking-tight text-center">
-                Connect with friends , family and Companions with Yemmy Room-id
-                and have a secure meet with them!
-              </div>
-            </h1>
-            <div className="flex justify-center items-center">
-              <form action="" className="w-[100%]">
-                <div className="w-full flex justify-center items-center">
-                  <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    className="w-[70%] rounded-sm p-2"
-                    placeholder="Enter Room-id/URL"
-                  />
-                  <div
-                    className="btn btn-accent m-1 text-black text-[70%]"
-                    onClick={submitHandler}
-                  >
-                    Join Room <MdGroup size={17} />{" "}
-                  </div>
-                </div>
-              </form>
+                Join Room <MdGroup size={17} />
+              </button>
             </div>
-            <div className="flex justify-center items-center">
-              <form action="" className="w-[100%]">
-                <div className="w-full flex justify-center items-center">
-                  <div className="w-[100%] h-16 rounded-lg bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300">
-                    {" "}
-                    {createRoom ? (
-                      <div className="flex w-[100%] items-center justify-between h-[100%] space-x-4">
-                        <div className="h-[90%] w-[67%] flex items-center space-x-3">
-                          <div className="text-[30%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
-                            link: Lorem ipsum, dolor sit amet consecteturjcsiuhc
-                            hknashas elit. Voluptas, optio!
-                          </div>{" "}
-                          <div className="cursor-pointer text-white underline text-[50%] border-gray-600">
-                            Copy Link!
-                          </div>
-                        </div>{" "}
-                        <div className="h-[90%] w-[35%] flex space-x-2 px-1 items-center">
-                          <div className="text-[40%] h-[60%] border w-[55%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
-                            ID: 143632
-                          </div>{" "}
-                          <div className="cursor-pointer text-white underline text-[60%] border-gray-600">
-                            Copy ID!
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="w-full flex justify-center items-center">
-                        Click the button to generate link!
-                      </div>
-                    )}{" "}
-                  </div>
+          </form>
+
+          {/* ✅ Create Room section moved ABOVE generated link */}
+          <div className="w-full flex flex-col justify-center items-center space-y-3">
+            <button
+              className="text-[60%] btn btn-error w-[80%] text-black hover:rotate-3 relative"
+              onClick={() => setCreateRoom(!createRoom)}
+            >
+              {createRoom ? (
+                <div className="text-[70%] absolute -top-3 right-2 text-yellow-300 tracking-wider">
+                  Click Again to Generate new Link!
                 </div>
-                <div className="w-full flex justify-center items-center">
-                  <div
-                    className="text-[60%] btn btn-error m-1 w-[80%] my-5 text-black hover:rotate-3"
-                    onClick={submitHandler}
-                  >
-                    Create New Room <MdGroup size={17} />
-                  </div>
+              ) : (
+                <div className="text-[70%] absolute -top-3 right-2 text-yellow-300 tracking-wider">
+                  Click the button to generate link!
                 </div>
-              </form>
-            </div>
+              )}
+              Create New Room <MdGroup size={17} />
+            </button>
+
+            {/* Generated Link / Info */}
+            <motion.div
+              initial={{ y: 60, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1.5 }}
+              className={`${
+                createRoom
+                  ? "w-[95%] h-24 rounded-lg bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex flex-col items-center text-sm px-2 text-orange-300"
+                  : "w-[95%] h-24 rounded-lg justify-center flex items-center text-sm px-2 text-orange-300"
+              }`}
+            >
+              {createRoom ? (
+                <>
+                  <div className="flex w-full justify-between items-center space-x-3 mt-2 h-10">
+                    <div className="text-[30%] h-[100%] w-[85%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
+                      link: Lorem ipsum, dolor sit amet consecteturjcsiuhc
+                      hknashas elit. Voluptas, optio!
+                    </div>
+                    <div className="cursor-pointer text-white underline text-[50%]">
+                      Copy Link!
+                    </div>
+                  </div>
+                  <div className="flex w-full justify-between items-center space-x-3 mb-2 h-8">
+                    <div className="text-[60%] h-[100%] border w-[85%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
+                      ID: 143632
+                    </div>
+                    <div className="cursor-pointer text-white underline text-[60%]">
+                      Copy ID!
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="text-[60%] text-center">
+                  Click the button to generate link!
+                </div>
+              )}
+            </motion.div>
           </div>
         </div>
       </div>
       {/* Midium and large screens! */}
-      <div className="hidden md:flex justify-around items-center h-[60%]">
-        <div className="md:w-[60%] lg:w-[55%] space-y-4 p-4">
+      <div className="hidden md:flex justify-around items-center h-[65%]">
+        <div className="md:w-[60%] lg:w-[50%] space-y-4 p-4">
           <motion.h1
             initial={{ x: -40, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -193,41 +210,57 @@ const Home = () => {
           </div>
           <div className="flex justify-center items-center">
             <form action="" className="md:w-[100%] lg:w-[100%]">
-              <div className="w-full flex justify-center items-center">
+              <div className="w-full flex justify-center items-center flex-col space-y-3">
                 <div
-                  className="md:text-[40%] btn btn-error m-1 lg:text-[60%] text-black hover:rotate-3"
+                  className="md:text-[40%] relative w-[50%] btn btn-error m-1 lg:text-[60%] text-black hover:rotate-3"
                   onClick={submitHandler}
                 >
+                  {createRoom ? (
+                    <div className="absolute -top-4 right-2 text-yellow-300 tracking-wider">
+                      Click Again to Generate new Link!
+                    </div>
+                  ) : (
+                    <div className="absolute -top-4 right-2 text-yellow-300 tracking-wider">
+                      Click the button to generate link!
+                    </div>
+                  )}
                   Create New Room <MdGroup size={17} />
                 </div>
-                <div className="w-[95%] h-16 rounded-lg bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300">
+                <motion.div
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 2 }}
+                  className={`${
+                    createRoom
+                      ? "w-[95%] h-28 rounded-lg bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300"
+                      : "w-[95%] h-28 rounded-lg justify-between flex items-center text-sm px-1"
+                  }`}
+                >
                   {" "}
                   {createRoom ? (
-                    <div className="flex w-[100%] items-center justify-between h-[100%] space-x-4">
-                      <div className="h-[90%] w-[67%] flex items-center space-x-3">
-                        <div className="md:text-[30%] lg:text-[45%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
+                    <div className="flex flex-col w-[100%] items-center justify-between h-[100%]">
+                      <div className="h-[90%] w-[95%] flex items-center space-x-3">
+                        <div className="text-[45%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
                           link: Lorem ipsum, dolor sit amet consecteturjcsiuhc
                           hknashas elit. Voluptas, optio!
                         </div>{" "}
-                        <div className="cursor-pointer text-white underline md:text-[50%] lg:text-[60%] border-gray-600">
+                        <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
                           Copy Link!
                         </div>
                       </div>{" "}
-                      <div className="h-[90%] w-[35%] flex space-x-2 px-1 items-center">
-                        <div className="text-[40%] h-[60%] border w-[55%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
+                      <div className="h-[90%] w-[90%] flex space-x-3 items-center">
+                        <div className="text-[70%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
                           ID: 143632
                         </div>{" "}
-                        <div className="cursor-pointer text-white underline text-[60%] border-gray-600">
+                        <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
                           Copy ID!
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <div className="w-full flex justify-center items-center">
-                      Click the button to generate link!
-                    </div>
+                    ""
                   )}{" "}
-                </div>
+                </motion.div>
               </div>
             </form>
           </div>

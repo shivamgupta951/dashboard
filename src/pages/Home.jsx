@@ -10,6 +10,8 @@ import Yemmy_Meet_logo from "../assets/Yemmy_Meet_logo.png";
 import { MdGroup } from "react-icons/md";
 import ElectricBorder from "../components/ElectricBorder";
 import toast from "react-hot-toast";
+import { div } from "framer-motion/client";
+import { Check } from "lucide-react";
 
 const Home = () => {
   const [input, setInput] = useState("");
@@ -134,10 +136,12 @@ const Home = () => {
           </form>
 
           {/* Create Room Section (Above Link Info) */}
-          <div className="w-full flex flex-col justify-center items-center space-y-3">
+          <div className="w-full flex flex-col justify-center items-center space-y-6">
             <button
               className={`text-[60%] btn w-[80%] text-black hover:rotate-3 relative ${
-                isDisabled ? "btn-disabled opacity-70 cursor-not-allowed" : "btn-error"
+                isDisabled
+                  ? "btn-disabled opacity-70 cursor-not-allowed"
+                  : "btn-error"
               }`}
               disabled={isDisabled}
               onClick={() => {
@@ -172,10 +176,18 @@ const Home = () => {
               }}
               className={`${
                 firstCreation
-                  ? "w-[95%] h-24 rounded-lg bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex flex-col items-center text-sm px-2 text-orange-300"
-                  : "w-[95%] h-24 rounded-lg justify-center flex items-center text-sm px-2 text-orange-300 border"
+                  ? "w-[95%] h-24 rounded-r-2xl relative bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex flex-col items-center text-sm px-2 text-orange-300"
+                  : "w-[95%] h-24 rounded-r-2xl justify-center flex items-center text-sm px-2 text-orange-300 border"
               }`}
             >
+              {isDisabled ? (
+                <div className="absolute -top-5 right-2 text-[70%] flex text-green-500">
+                  ID and LINK Updated!
+                </div>
+              ) : (
+                ""
+              )}
+
               {firstCreation ? (
                 <>
                   <div className="flex w-full justify-between items-center space-x-3 mt-2 h-10">
@@ -258,7 +270,7 @@ const Home = () => {
 
           {/* Create New Room */}
           <div className="flex justify-center items-center">
-            <div className="md:w-[100%] lg:w-[100%] flex flex-col items-center space-y-3">
+            <div className="md:w-[100%] lg:w-[100%] flex flex-col items-center space-y-6">
               <button
                 className={`md:text-[40%] relative w-[50%] btn m-1 lg:text-[60%] text-black hover:rotate-3 ${
                   isDisabled
@@ -298,10 +310,17 @@ const Home = () => {
                 }}
                 className={`${
                   firstCreation
-                    ? "w-[95%] h-28 rounded-lg bg-gradient-to-r from-blue-950 via-black to-gray-950 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300"
-                    : "w-[95%] h-28 rounded-lg justify-center flex items-center text-sm px-1 border"
+                    ? "w-[95%] h-28 rounded-r-2xl bg-gradient-to-r relative from-blue-950 via-black to-gray-950 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300"
+                    : "w-[95%] h-28 rounded-r-2xl justify-center flex items-center text-sm px-1 border"
                 }`}
               >
+                {isDisabled ? (
+                  <div className="absolute -top-5 right-2 text-[70%] flex text-green-500">
+                    ID and LINK Updated!
+                  </div>
+                ) : (
+                  ""
+                )}
                 {firstCreation ? (
                   <div className="flex flex-col w-[100%] items-center justify-between h-[100%]">
                     <div className="h-[90%] w-[95%] flex items-center space-x-3">

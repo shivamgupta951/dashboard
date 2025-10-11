@@ -15,13 +15,17 @@ import { div } from "framer-motion/client";
 
 const Home = () => {
   const [input, setInput] = useState("");
+  const [link, setLink] = useState(
+    "link: Lorem ipsum, dolor sit amet consecteturjcsiuhc hknashas elit. Voluptas, optio!"
+  );
+  const [meet_id, setMeet_id] = useState("Id: 267292");
   const submitHandler = (e) => {
     e.preventDefault();
     if (input) {
       window.location.href = `/room/${input}`;
     }
   };
-  const [createRoom, setCreateRoom] = useState(true);
+  const [firstCreation, setfirstCreation] = useState(false);
   return (
     <div id="home" className="w-full h-[1200px] sm:h-[1200px] md:h-[800px]">
       <Navbar />
@@ -106,9 +110,9 @@ const Home = () => {
           <div className="w-full flex flex-col justify-center items-center space-y-3">
             <button
               className="text-[60%] btn btn-error w-[80%] text-black hover:rotate-3 relative"
-              onClick={() => setCreateRoom(!createRoom)}
+              onClick={() => setfirstCreation(true)}
             >
-              {createRoom ? (
+              {firstCreation ? (
                 <div className="text-[70%] absolute -top-3 right-2 text-yellow-300 tracking-wider">
                   Click Again to Generate new Link!
                 </div>
@@ -122,21 +126,23 @@ const Home = () => {
 
             {/* Generated Link / Info */}
             <motion.div
-              initial={{ y: 60, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.5 }}
+              animate={{ rotate: [0, 3, -3, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 15,
+                ease: "easeInOut",
+              }}
               className={`${
-                createRoom
+                firstCreation
                   ? "w-[95%] h-24 rounded-lg bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex flex-col items-center text-sm px-2 text-orange-300"
-                  : "w-[95%] h-24 rounded-lg justify-center flex items-center text-sm px-2 text-orange-300"
+                  : "w-[95%] h-24 rounded-lg justify-center flex items-center text-sm px-2 text-orange-300 border"
               }`}
             >
-              {createRoom ? (
+              {firstCreation ? (
                 <>
                   <div className="flex w-full justify-between items-center space-x-3 mt-2 h-10">
                     <div className="text-[30%] h-[100%] w-[85%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
-                      link: Lorem ipsum, dolor sit amet consecteturjcsiuhc
-                      hknashas elit. Voluptas, optio!
+                      {link}
                     </div>
                     <div className="cursor-pointer text-white underline text-[50%]">
                       Copy Link!
@@ -144,7 +150,7 @@ const Home = () => {
                   </div>
                   <div className="flex w-full justify-between items-center space-x-3 mb-2 h-8">
                     <div className="text-[60%] h-[100%] border w-[85%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
-                      ID: 143632
+                      {meet_id}
                     </div>
                     <div className="cursor-pointer text-white underline text-[60%]">
                       Copy ID!
@@ -213,9 +219,9 @@ const Home = () => {
               <div className="w-full flex justify-center items-center flex-col space-y-3">
                 <div
                   className="md:text-[40%] relative w-[50%] btn btn-error m-1 lg:text-[60%] text-black hover:rotate-3"
-                  onClick={submitHandler}
+                  onClick={() => setfirstCreation(true)}
                 >
-                  {createRoom ? (
+                  {firstCreation ? (
                     <div className="absolute -top-4 right-2 text-yellow-300 tracking-wider">
                       Click Again to Generate new Link!
                     </div>
@@ -227,22 +233,24 @@ const Home = () => {
                   Create New Room <MdGroup size={17} />
                 </div>
                 <motion.div
-                  initial={{ y: 100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 2 }}
+                  animate={{ rotate: [0, 3, -3, 0] }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 15,
+                    ease: "easeInOut",
+                  }}
                   className={`${
-                    createRoom
-                      ? "w-[95%] h-28 rounded-lg bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300"
-                      : "w-[95%] h-28 rounded-lg justify-between flex items-center text-sm px-1"
+                    firstCreation
+                      ? "w-[95%] h-28 rounded-lg bg-gradient-to-r from-blue-950 via-black to-gray-950 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300"
+                      : "w-[95%] h-28 rounded-lg justify-center flex items-center text-sm px-1 border"
                   }`}
                 >
                   {" "}
-                  {createRoom ? (
+                  {firstCreation ? (
                     <div className="flex flex-col w-[100%] items-center justify-between h-[100%]">
                       <div className="h-[90%] w-[95%] flex items-center space-x-3">
                         <div className="text-[45%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
-                          link: Lorem ipsum, dolor sit amet consecteturjcsiuhc
-                          hknashas elit. Voluptas, optio!
+                          {link}
                         </div>{" "}
                         <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
                           Copy Link!
@@ -250,7 +258,7 @@ const Home = () => {
                       </div>{" "}
                       <div className="h-[90%] w-[90%] flex space-x-3 items-center">
                         <div className="text-[70%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
-                          ID: 143632
+                          {meet_id}
                         </div>{" "}
                         <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
                           Copy ID!
@@ -258,7 +266,9 @@ const Home = () => {
                       </div>
                     </div>
                   ) : (
-                    ""
+                    <div className="text-[90%] text-orange-400 text-center">
+                      Click the button to generate link!
+                    </div>
                   )}{" "}
                 </motion.div>
               </div>

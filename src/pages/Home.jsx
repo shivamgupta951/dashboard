@@ -4,7 +4,7 @@ import Bar from "../components/Bar";
 import pic1 from "../assets/pic1.png";
 import pic2 from "../assets/pic2.png";
 import pic3 from "../assets/pic3.png";
-import { AiFillApi } from "react-icons/ai";
+import { AiFillApi, AiFillGitlab, AiOutlineQrcode } from "react-icons/ai";
 import { motion } from "framer-motion";
 import Yemmy_Meet_logo from "../assets/Yemmy_Meet_logo.png";
 import { MdGroup } from "react-icons/md";
@@ -105,7 +105,7 @@ const Home = () => {
         </div>
 
         {/* Room Join & Create Section */}
-        <div className="w-[95%] flex flex-col items-center space-y-6">
+        <div className="w-[97%] flex flex-col items-center space-y-6 ">
           {/* Heading */}
           <h1 className="text-5xl font-bold flex justify-center items-center text-warning border border-dashed p-4 rounded-lg bg-gradient-to-br from-teal-900">
             <motion.div
@@ -193,6 +193,11 @@ const Home = () => {
                   : "w-[95%] h-24 rounded-r-2xl justify-center flex items-center text-sm px-2 text-orange-300 border"
               }`}
             >
+              <div className="absolute -top-6 left-1 text-[90%] flex text-yellow-300">
+                Yemmy Meet Room{" "}
+                <AiOutlineQrcode className="text-xl mx-1 animate-spin-slow" />
+              </div>
+
               {isDisabled ? (
                 <div className="absolute -top-5 right-2 text-[70%] flex text-green-500">
                   ID and LINK Updated!
@@ -335,6 +340,11 @@ const Home = () => {
                     : "w-[95%] h-32 rounded-tr-2xl rounded-bl-2xl justify-center flex items-center text-sm px-1 border"
                 }`}
               >
+                <div className="absolute -top-6 left-1 text-[90%] flex text-yellow-300">
+                  Yemmy Meet Room{" "}
+                  <AiOutlineQrcode className="text-xl mx-1 animate-spin-slow" />
+                </div>
+
                 {isDisabled ? (
                   <div className="absolute -top-5 right-2 text-[70%] flex text-green-500">
                     ID and LINK Updated!
@@ -343,32 +353,38 @@ const Home = () => {
                   ""
                 )}
                 {firstCreation ? (
-                  <div className="flex flex-col w-[100%] items-center justify-between h-[100%]">
-                    <div className="h-[90%] w-[95%] flex items-center space-x-3">
-                      <div className="text-[70%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
-                        Link: {link}
+                  <>
+                    <div className="absolute -top-6 left-1 text-[90%] flex text-yellow-300">
+                      Yemmy Meet Room{" "}
+                      <AiOutlineQrcode className="text-xl mx-1 animate-spin-slow" />
+                    </div>
+                    <div className="flex flex-col w-[100%] items-center justify-between h-[100%]">
+                      <div className="h-[90%] w-[95%] flex items-center space-x-3">
+                        <div className="text-[70%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
+                          Link: {link}
+                        </div>{" "}
+                        <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
+                          Copy Link!
+                        </div>
                       </div>{" "}
-                      <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
-                        Copy Link!
+                      <div className="h-[90%] w-[95%] flex space-x-3 items-center">
+                        <div className="text-[80%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
+                          Id: {meet_id}
+                        </div>{" "}
+                        <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
+                          Copy ID!
+                        </div>
                       </div>
-                    </div>{" "}
-                    <div className="h-[90%] w-[95%] flex space-x-3 items-center">
-                      <div className="text-[80%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
-                        Id: {meet_id}
-                      </div>{" "}
-                      <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
-                        Copy ID!
+                      <div className="h-[90%] w-[95%] flex space-x-3 items-center">
+                        <div className="text-[80%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
+                          Passcode: {meet_passcode}
+                        </div>{" "}
+                        <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
+                          Copy Passcode!
+                        </div>
                       </div>
                     </div>
-                    <div className="h-[90%] w-[95%] flex space-x-3 items-center">
-                      <div className="text-[80%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
-                        Passcode: {meet_passcode}
-                      </div>{" "}
-                      <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
-                        Copy ID!
-                      </div>
-                    </div>
-                  </div>
+                  </>
                 ) : (
                   <div className="text-[90%] text-orange-400 text-center">
                     Click the button to generate link!

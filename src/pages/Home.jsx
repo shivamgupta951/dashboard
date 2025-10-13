@@ -17,6 +17,7 @@ const Home = () => {
   const [input, setInput] = useState("");
   const [link, setLink] = useState("http://localhost:5173/room/12345");
   const [meet_id, setMeet_id] = useState("267292");
+  const [meet_passcode, setMeet_passcode] = useState("6278");
   const [firstCreation, setfirstCreation] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -30,6 +31,15 @@ const Home = () => {
     }
     return id;
   };
+  const generatePasscode = (length = 4) => {
+    const chars = "0123456789";
+    let passcode = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * chars.length);
+      passcode += chars[randomIndex];
+    }
+    return passcode;
+  };
 
   const setDisabledTrue = () => {
     setIsDisabled(true);
@@ -41,8 +51,11 @@ const Home = () => {
   const newMeetRoom = () => {
     let temp_link = "http://localhost:5173/room/";
     let new_id = generateRandomId();
+    let temp_passcode = generatePasscode();
+    let new_passcode = temp_passcode;
     temp_link = temp_link.concat(new_id);
     setLink(temp_link);
+    setMeet_passcode(new_passcode);
     setMeet_id(new_id);
     toast.success("New YemmyMeet Room Created!");
   };
@@ -55,7 +68,7 @@ const Home = () => {
   };
 
   return (
-    <div id="home" className="w-full h-[1200px] sm:h-[1200px] md:h-[800px]">
+    <div id="home" className="w-full h-[1120px] sm:h-[1200px] md:h-[800px]">
       <Navbar />
       <Bar />
 
@@ -135,7 +148,7 @@ const Home = () => {
             </div>
           </form>
 
-          {/* Create Room Section (Above Link Info) */}
+          {/* Create Room Section */}
           <div className="w-full flex flex-col justify-center items-center space-y-6">
             <button
               className={`text-[60%] btn w-[80%] text-black hover:rotate-3 relative ${
@@ -166,7 +179,7 @@ const Home = () => {
               )}
             </button>
 
-            {/* Generated Link / Info */}
+            {/* Generated Link / Info (updated to include Passcode) */}
             <motion.div
               animate={{ rotate: [0, 3, -3, 0] }}
               transition={{
@@ -176,7 +189,7 @@ const Home = () => {
               }}
               className={`${
                 firstCreation
-                  ? "w-[95%] h-24 rounded-r-2xl relative bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex flex-col items-center text-sm px-2 text-orange-300"
+                  ? "w-[95%] h-32 rounded-r-2xl relative bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex flex-col items-center text-sm px-2 text-orange-300"
                   : "w-[95%] h-24 rounded-r-2xl justify-center flex items-center text-sm px-2 text-orange-300 border"
               }`}
             >
@@ -190,20 +203,28 @@ const Home = () => {
 
               {firstCreation ? (
                 <>
-                  <div className="flex w-full justify-between items-center space-x-3 mt-2 h-10">
+                  <div className="flex w-full justify-between items-center space-x-3 mt-2 h-8">
                     <div className="text-[70%] h-[100%] w-[85%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
                       Link: {link}
                     </div>
-                    <div className="cursor-pointer text-white underline text-[50%]">
+                    <div className="cursor-pointer text-white underline text-[60%]">
                       Copy Link!
                     </div>
                   </div>
-                  <div className="flex w-full justify-between items-center space-x-3 mb-2 h-8">
+                  <div className="flex w-full justify-between items-center space-x-3 h-8">
                     <div className="text-[80%] h-[100%] border w-[85%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
                       Id: {meet_id}
                     </div>
                     <div className="cursor-pointer text-white underline text-[60%]">
                       Copy ID!
+                    </div>
+                  </div>
+                  <div className="flex w-full justify-between items-center space-x-3 mb-2 h-8">
+                    <div className="text-[80%] h-[100%] border w-[85%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
+                      Passcode: {meet_passcode}
+                    </div>
+                    <div className="cursor-pointer text-white underline text-[60%]">
+                      Copy Passcode!
                     </div>
                   </div>
                 </>
@@ -310,8 +331,8 @@ const Home = () => {
                 }}
                 className={`${
                   firstCreation
-                    ? "w-[95%] h-28 rounded-r-2xl bg-gradient-to-r relative from-blue-950 via-black to-gray-950 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300"
-                    : "w-[95%] h-28 rounded-r-2xl justify-center flex items-center text-sm px-1 border"
+                    ? "w-[95%] h-32 rounded-tr-2xl rounded-bl-2xl bg-gradient-to-r relative from-blue-950 via-black to-gray-950 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300"
+                    : "w-[95%] h-32 rounded-tr-2xl rounded-bl-2xl justify-center flex items-center text-sm px-1 border"
                 }`}
               >
                 {isDisabled ? (
@@ -331,9 +352,17 @@ const Home = () => {
                         Copy Link!
                       </div>
                     </div>{" "}
-                    <div className="h-[90%] w-[90%] flex space-x-3 items-center">
+                    <div className="h-[90%] w-[95%] flex space-x-3 items-center">
                       <div className="text-[80%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
                         Id: {meet_id}
+                      </div>{" "}
+                      <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
+                        Copy ID!
+                      </div>
+                    </div>
+                    <div className="h-[90%] w-[95%] flex space-x-3 items-center">
+                      <div className="text-[80%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
+                        Passcode: {meet_passcode}
                       </div>{" "}
                       <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
                         Copy ID!

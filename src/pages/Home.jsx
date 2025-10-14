@@ -12,14 +12,19 @@ import ElectricBorder from "../components/ElectricBorder";
 import toast from "react-hot-toast";
 import { div } from "framer-motion/client";
 import { Check } from "lucide-react";
+import PasskeyModal from "../components/PasskeyModal";
 
 const Home = () => {
   const [input, setInput] = useState("");
   const [link, setLink] = useState("http://localhost:5173/room/12345");
   const [meet_id, setMeet_id] = useState("267292");
-  const [meet_passcode, setMeet_passcode] = useState("6278");
+  const [meet_passkey, setMeet_passkey] = useState("6278");
   const [firstCreation, setfirstCreation] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+
+  // new states for passkey modal and pending join ID
+  const [showPasskeyModal, setShowPasskeyModal] = useState(false);
+  const [pendingRoomId, setPendingRoomId] = useState("");
 
   const generateRandomId = (length = 8) => {
     const chars =
@@ -31,14 +36,14 @@ const Home = () => {
     }
     return id;
   };
-  const generatePasscode = (length = 4) => {
+  const generatePasskey = (length = 4) => {
     const chars = "0123456789";
-    let passcode = "";
+    let passkey = "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * chars.length);
-      passcode += chars[randomIndex];
+      passkey += chars[randomIndex];
     }
-    return passcode;
+    return passkey;
   };
 
   const setDisabledTrue = () => {
@@ -51,20 +56,48 @@ const Home = () => {
   const newMeetRoom = () => {
     let temp_link = "http://localhost:5173/room/";
     let new_id = generateRandomId();
-    let temp_passcode = generatePasscode();
-    let new_passcode = temp_passcode;
+    let temp_passkey = generatePasskey();
+    let new_passkey = temp_passkey;
     temp_link = temp_link.concat(new_id);
     setLink(temp_link);
-    setMeet_passcode(new_passcode);
+    setMeet_passkey(new_passkey);
     setMeet_id(new_id);
+
+    // store meeting info locally so this browser can verify later
+    try {
+      localStorage.setItem(
+        `yemmy_meet_${new_id}`,
+        JSON.stringify({ passkey: new_passkey })
+      );
+    } catch (err) {
+      console.warn("localStorage not available:", err);
+    }
+
     toast.success("New YemmyMeet Room Created!");
   };
 
+  const copyToClipboard = async (text, label = "Text") => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success(`${label} copied!`);
+    } catch (err) {
+      toast.error("Unable to copy to clipboard");
+    }
+  };
+
+  // when join is attempted: extract id (if URL provided), then show passkey modal
   const submitHandler = (e) => {
     e.preventDefault();
-    if (input) {
-      window.location.href = `/room/${input}`;
-    }
+    if (!input) return;
+
+    // extract ID if user pasted full link with /room/
+    let id = input.includes("/room/")
+      ? input.split("/room/")[1].split(/[?#]/)[0]
+      : input.trim();
+
+    // store pending id & open modal for passkey
+    setPendingRoomId(id);
+    setShowPasskeyModal(true);
   };
 
   return (
@@ -149,7 +182,7 @@ const Home = () => {
           </form>
 
           {/* Create Room Section */}
-          <div className="w-full flex flex-col justify-center items-center space-y-6">
+          <div className="w-full flex flex-col justify-center items-center space-y-10">
             <button
               className={`text-[60%] btn w-[80%] text-black hover:rotate-3 relative ${
                 isDisabled
@@ -179,7 +212,7 @@ const Home = () => {
               )}
             </button>
 
-            {/* Generated Link / Info (updated to include Passcode) */}
+            {/* Generated Link / Info (updated to include Passkey) */}
             <motion.div
               animate={{ rotate: [0, 3, -3, 0] }}
               transition={{
@@ -190,7 +223,7 @@ const Home = () => {
               className={`${
                 firstCreation
                   ? "w-[95%] h-32 rounded-r-2xl relative bg-gradient-to-b from-black to-gray-900 justify-between border-orange-800 border-2 flex flex-col items-center text-sm px-2 text-orange-300"
-                  : "w-[95%] h-24 rounded-r-2xl justify-center flex items-center text-sm px-2 text-orange-300 border"
+                  : "w-[95%] h-24 rounded-r-2xl justify-center flex items-center text-sm px-2 text-orange-300 border bg-gradient-to-r from-black via-slate-900 to-yellow-950"
               }`}
             >
               <div className="absolute -top-6 left-1 text-[90%] flex text-yellow-300">
@@ -212,7 +245,10 @@ const Home = () => {
                     <div className="text-[70%] h-[100%] w-[85%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
                       Link: {link}
                     </div>
-                    <div className="cursor-pointer text-white underline text-[60%]">
+                    <div
+                      onClick={() => copyToClipboard(link, "Link")}
+                      className="cursor-pointer text-white underline text-[60%] transition-all transform duration-300 ease-in-out hover:text-green-600 hover:scale-95"
+                    >
                       Copy Link!
                     </div>
                   </div>
@@ -220,16 +256,22 @@ const Home = () => {
                     <div className="text-[80%] h-[100%] border w-[85%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
                       Id: {meet_id}
                     </div>
-                    <div className="cursor-pointer text-white underline text-[60%]">
+                    <div
+                      onClick={() => copyToClipboard(meet_id, "ID")}
+                      className="cursor-pointer text-white underline text-[60%] transition-all transform duration-300 ease-in-out hover:text-green-600 hover:scale-95"
+                    >
                       Copy ID!
                     </div>
                   </div>
                   <div className="flex w-full justify-between items-center space-x-3 mb-2 h-8">
                     <div className="text-[80%] h-[100%] border w-[85%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
-                      Passcode: {meet_passcode}
+                      Passkey: {meet_passkey}
                     </div>
-                    <div className="cursor-pointer text-white underline text-[60%]">
-                      Copy Passcode!
+                    <div
+                      onClick={() => copyToClipboard(meet_passkey, "Passkey")}
+                      className="cursor-pointer text-white underline text-[60%] transition-all transform duration-300 ease-in-out hover:text-green-600 hover:scale-95"
+                    >
+                      Copy Passkey!
                     </div>
                   </div>
                 </>
@@ -244,7 +286,7 @@ const Home = () => {
       </div>
 
       {/* Medium and Large screens */}
-      <div className="hidden md:flex justify-around items-center h-[65%]">
+      <div className="hidden md:flex justify-around items-center h-[65%] md:mt-8">
         <div className="md:w-[60%] lg:w-[50%] space-y-4 p-4">
           <motion.h1
             initial={{ x: -40, opacity: 0 }}
@@ -296,7 +338,7 @@ const Home = () => {
 
           {/* Create New Room */}
           <div className="flex justify-center items-center">
-            <div className="md:w-[100%] lg:w-[100%] flex flex-col items-center space-y-6">
+            <div className="md:w-[100%] lg:w-[100%] flex flex-col items-center space-y-8">
               <button
                 className={`md:text-[40%] relative w-[50%] btn m-1 lg:text-[60%] text-black hover:rotate-3 ${
                   isDisabled
@@ -337,7 +379,7 @@ const Home = () => {
                 className={`${
                   firstCreation
                     ? "w-[95%] h-32 rounded-tr-2xl rounded-bl-2xl bg-gradient-to-r relative from-blue-950 via-black to-gray-950 justify-between border-orange-800 border-2 flex items-center text-sm px-1 text-orange-300"
-                    : "w-[95%] h-32 rounded-tr-2xl rounded-bl-2xl justify-center flex items-center text-sm px-1 border"
+                    : "w-[95%] h-32 rounded-tr-2xl rounded-bl-2xl justify-center flex items-center text-sm px-1 border bg-gradient-to-r from-black via-slate-900 to-yellow-950"
                 }`}
               >
                 <div className="absolute -top-6 left-1 text-[90%] flex text-yellow-300">
@@ -363,7 +405,10 @@ const Home = () => {
                         <div className="text-[70%] h-[60%] w-[80%] overflow-hidden border rounded-md flex justify-center items-center bg-[#4f0e0e]">
                           Link: {link}
                         </div>{" "}
-                        <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
+                        <div
+                          onClick={() => copyToClipboard(link, "Link")}
+                          className="cursor-pointer text-white underline text-[70%] border-gray-600 transition-all transform duration-300 ease-in-out hover:text-green-600 hover:scale-95"
+                        >
                           Copy Link!
                         </div>
                       </div>{" "}
@@ -371,16 +416,22 @@ const Home = () => {
                         <div className="text-[80%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
                           Id: {meet_id}
                         </div>{" "}
-                        <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
+                        <div
+                          onClick={() => copyToClipboard(meet_id, "ID")}
+                          className="cursor-pointer text-white underline text-[70%] border-gray-600 transition-all transform duration-300 ease-in-out hover:text-green-600 hover:scale-95"
+                        >
                           Copy ID!
                         </div>
                       </div>
                       <div className="h-[90%] w-[95%] flex space-x-3 items-center">
                         <div className="text-[80%] h-[60%] border w-[80%] flex justify-center items-center rounded-md bg-[#4f0e0e]">
-                          Passcode: {meet_passcode}
+                          Passkey: {meet_passkey}
                         </div>{" "}
-                        <div className="cursor-pointer text-white underline text-[70%] border-gray-600">
-                          Copy Passcode!
+                        <div
+                          onClick={() => copyToClipboard(meet_passkey, "Passkey")}
+                          className="cursor-pointer text-white underline text-[70%] border-gray-600 transition-all transform duration-300 ease-in-out hover:text-green-600 hover:scale-95"
+                        >
+                          Copy Passkey!
                         </div>
                       </div>
                     </div>
@@ -426,6 +477,22 @@ const Home = () => {
           </div>
         </ElectricBorder>
       </div>
+
+      {/* Passkey Modal */}
+      <PasskeyModal
+        open={showPasskeyModal}
+        pendingRoomId={pendingRoomId}
+        onClose={() => setShowPasskeyModal(false)}
+        onVerify={(accepted) => {
+          setShowPasskeyModal(false);
+          if (accepted) {
+            // Navigate to room (simulate your prior behavior)
+            window.location.href = `/room/${pendingRoomId}`;
+          } else {
+            toast.error("Passkey verification failed.");
+          }
+        }}
+      />
     </div>
   );
 };

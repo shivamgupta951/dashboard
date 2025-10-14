@@ -79,12 +79,16 @@ const VideoComp = () => {
 
       {/* 🧡 Overlay Room ID */}
       <div className="absolute top-1 left-20 text-orange-700 text-lg font-medium tracking-wide flex justify-center items-center z-50">
-        YemmyMeet Room ID : <span className="text-orange-200 mx-1">{roomID}</span>
+        YemmyMeet Room ID :{" "}
+        <span className="text-orange-200 mx-1">{roomID}</span>
       </div>
 
       {/* 🔙 Back to Website Button (always visible) */}
       <button
-        onClick={() => navigate("/")}
+        onClick={() => {
+          navigate("/");
+          window.location.reload();
+        }}
         className="fixed top-1 right-20 flex items-center gap-1 px-1 py-1 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-xl shadow-lg transition-all duration-200 z-[1000] text-sm"
       >
         <ArrowLeft className="w-4 h-4" />
